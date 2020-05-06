@@ -36,6 +36,10 @@ public class CompressWithLuBan implements CompressImage {
         this.context = context;
     }
 
+    public boolean isThirdLuban(){
+        return options==null || (options.getMaxWidth()==0 && options.getMaxHeight()==0);
+    }
+
     @Override
     public void compress() {
         if (images == null || images.isEmpty()) {
@@ -58,7 +62,7 @@ public class CompressWithLuBan implements CompressImage {
 
     private void compressOne() {
         Luban.compress(context, files.get(0))
-            .putGear(Luban.CUSTOM_GEAR)
+            .putGear(isThirdLuban()? Luban.THIRD_GEAR:Luban.CUSTOM_GEAR)
             .setMaxHeight(options.getMaxHeight())
             .setMaxWidth(options.getMaxWidth())
             .setMaxSize(options.getMaxSize() / 1000)
@@ -85,7 +89,7 @@ public class CompressWithLuBan implements CompressImage {
 
     private void compressMulti() {
         Luban.compress(context, files)
-            .putGear(Luban.CUSTOM_GEAR)
+            .putGear(isThirdLuban()? Luban.THIRD_GEAR:Luban.CUSTOM_GEAR)
             .setMaxSize(options.getMaxSize() / 1000)                // limit the final image size（unit：Kb）
             .setMaxHeight(options.getMaxHeight())             // limit image height
             .setMaxWidth(options.getMaxWidth())
