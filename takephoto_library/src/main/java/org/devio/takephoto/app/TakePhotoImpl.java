@@ -441,7 +441,7 @@ public class TakePhotoImpl implements TakePhoto {
             CompressImageImpl.of(contextWrap.getActivity(), compressConfig, result.getImages(), new CompressImage.CompressListener() {
                 @Override
                 public void onCompressSuccess(ArrayList<TImage> images) {
-                    if (!compressConfig.isEnableReserveRaw()) {
+                    if (compressConfig!=null && !compressConfig.isEnableReserveRaw()) {
                         deleteRawFile(images);
                     }
                     handleTakeCallBack(result);
@@ -452,7 +452,7 @@ public class TakePhotoImpl implements TakePhoto {
 
                 @Override
                 public void onCompressFailed(ArrayList<TImage> images, String msg) {
-                    if (!compressConfig.isEnableReserveRaw()) {
+                    if (compressConfig!=null && !compressConfig.isEnableReserveRaw()) {
                         deleteRawFile(images);
                     }
                     handleTakeCallBack(TResult.of(images),
