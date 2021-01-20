@@ -78,4 +78,15 @@ public class TImage implements Serializable {
     public enum FromType {
         CAMERA, OTHER
     }
+
+    @Override
+    public String toString() {
+        return "TImage{" +
+                "originalPath='" + originalPath + '\'' +
+                ", compressPath='" + compressPath + '\'' +
+                ", fromType=" + fromType +
+                ", cropped=" + cropped +
+                ", compressed=" + compressed +
+                '}';
+    }
 }
