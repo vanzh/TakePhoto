@@ -8,10 +8,10 @@
     <application android:allowBackup="true">
         <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
         <provider
-            android:name="android.support.v4.content.FileProvider"
+            android:name=".app.TakePhotoProvider"
             android:authorities="${applicationId}.takephoto_fileprovider"
-            android:grantUriPermissions="true"
-            android:exported="false">
+            android:exported="false"
+            android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/takephoto_paths" />
